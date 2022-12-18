@@ -24,7 +24,6 @@ export default function SignUp() {
     }
 
     function submitSignUp(e) {
-        e.preventDefault()
         setStartLoading(true)
         const body = form
         axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/sign-up", body)
@@ -37,7 +36,7 @@ export default function SignUp() {
                 setStartLoading(false)
             })
     }
-    
+
     return (
         <ContainerSignUp>
             <img src={logo} alt="logomarca" />

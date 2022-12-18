@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import Login from "./Pages/LoginPage/Login"
 import SignUp from "./Pages/SignUpPage/SignUp";
-import { AuthContext } from "./Context/AuthContext";
-import React, { useContext } from "react";
+import Habitos from "./Pages/HabitosPage/Habitos";
+import Hoje from "./Pages/HojePage/Hoje";
 
 function App() {
 
@@ -11,6 +11,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/cadastro" element={<SignUp />} />
+        <Route path="/hoje" element={<Hoje />} />
       </Routes>
     </BrowserRouter>
   )

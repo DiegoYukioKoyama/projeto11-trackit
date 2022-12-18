@@ -28,8 +28,6 @@ footer, header, hgroup, menu, nav, section {
 }
 body {
 	line-height: 1;
-    width: 375px;
-    height: 667px;
 }
 ol, ul {
 	list-style: none;

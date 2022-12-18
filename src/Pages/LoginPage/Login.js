@@ -8,7 +8,7 @@ import { AuthContext } from "../../Context/AuthContext";
 
 export default function Login() {
 
-    const { setToken, token } = useContext(AuthContext)
+    const { setToken, setProfileImage } = useContext(AuthContext)
     const navigate = useNavigate()
     const [startLoading, setStartLoading] = useState(false)
     const [form, setForm] = useState({
@@ -30,6 +30,7 @@ export default function Login() {
         axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
             .then((resp) => {
                 setToken(resp.data.token)
+                setProfileImage(resp.data.image)
                 navigate("/hoje")
                 setStartLoading(false)
             })
