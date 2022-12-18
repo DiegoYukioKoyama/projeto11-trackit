@@ -32,6 +32,9 @@ export const Form = styled.form`
         border: 1px solid #D5D5D5;
         border-radius: 5px;
         box-sizing: border-box;
+        &:disabled{
+            background-color: #F2F2F2;
+        }
         ::placeholder{
             font-family: 'Lexend Deca';
             font-style: normal;
@@ -43,6 +46,9 @@ export const Form = styled.form`
     button{
         width: 303px;
         height: 45px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
         box-sizing: border-box;
@@ -52,5 +58,8 @@ export const Form = styled.form`
         font-style: normal;
         font-weight: 400;
         font-size: 21px;
+        &:disabled{
+            opacity: 0.7;
+        }
     }
 `

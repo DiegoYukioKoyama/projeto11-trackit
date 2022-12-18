@@ -1,30 +1,42 @@
-import { useState } from "react";
+import React, { useContext, useState } from "react";
 import { ContainerLogin, Form } from "./styled";
 import logo from "../../assets/logo.png"
 import axios from "axios";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import Loading from "../../Load/Loading";
+import { AuthContext } from "../../Context/AuthContext";
 
 export default function Login() {
 
+    const { setToken, token } = useContext(AuthContext)
+    const navigate = useNavigate()
+    const [startLoading, setStartLoading] = useState(false)
     const [form, setForm] = useState({
         email: "",
         password: ""
     })
 
-    function handleForm (e) {
+    function handleForm(e) {
         setForm({
-          ...form,
-          [e.target.name]: e.target.value,
+            ...form,
+            [e.target.name]: e.target.value,
         })
-      }
-    
-    function submitLogin(e){
+    }
 
+    function submitLogin(e) {
         e.preventDefault()
+        setStartLoading(true)
         const body = form
         axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/auth/login", body)
-            .then((resp) => console.log(resp))
-            .catch((err) => alert(err.response.data.message))      
+            .then((resp) => {
+                setToken(resp.data.token)
+                navigate("/hoje")
+                setStartLoading(false)
+            })
+            .catch((err) => {
+                alert(err.response.data.message)
+                setStartLoading(false)
+            })
 
     }
 
@@ -32,9 +44,9 @@ export default function Login() {
         <ContainerLogin>
             <img src={logo} alt="logomarca" />
             <Form onSubmit={submitLogin}>
-                <input type="email" name="email" onChange={handleForm} value={form.email} placeholder="email" required />
-                <input type="password" name="password" onChange={handleForm} value={form.password} placeholder="senha" required />
-                <button type="submit">Entrar</button>
+                <input type="email" disabled={startLoading} name="email" onChange={handleForm} value={form.email} placeholder="email" required />
+                <input type="password" disabled={startLoading} name="password" onChange={handleForm} value={form.password} placeholder="senha" required />
+                <button type="submit" disabled={startLoading}> {startLoading ? <Loading /> : "Entrar"}</button>
             </Form>
             <Link to="/cadastro"><p>Não tem uma conta? Cadastre-se!</p></Link>
         </ContainerLogin>
