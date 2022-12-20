@@ -2,10 +2,10 @@ import styled from "styled-components";
 
 export const ContainerHabitos = styled.div`
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     margin-top: 70px;
     margin-bottom: 70px;
-    background-color: #F2F2F2;
+    background-color: #E5E5E5;
     h2{
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -160,7 +160,6 @@ export const ContainerListaHabitos = styled.div`
     padding-top: 13px;
     box-sizing: border-box;
     div{
-
         display: flex;
         justify-content: space-between;
     }

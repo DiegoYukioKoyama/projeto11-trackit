@@ -2,18 +2,19 @@ import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { CircularProgressbar, buildStyles } from 'react-circular-progressbar';
 import "react-circular-progressbar/dist/styles.css";
+import { AuthContext } from "../../Context/AuthContext";
+import { useContext } from "react";
 
 
 export default function Menu() {
 
-    const percentage = 10
+    const {percent} = useContext(AuthContext)
     const navigate = useNavigate();
     return (
         <ContainerMenu>
             <p onClick={() => navigate("/habitos")}>Hábitos</p>
             <ContainerProgressbar onClick={() => navigate("/hoje")}>
                 <CircularProgressbar
-                    value={percentage}
                     text={`Hoje`}
                     background
                     backgroundPadding={6}
